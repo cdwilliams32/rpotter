@@ -83,7 +83,7 @@ def Spell(spell):
     #Invoke IoT (or any other) actions here
     cv2.putText(mask, spell, (5, 25),cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,0,0))
     #renamed spell Aguamenti but kept Incendio naming - fix later
-	if (spell=="Aguamenti"):
+    if (spell=="Aguamenti"):
         print("incendio_pin ON")
         pi.write(incendio_pin,1)
         #keep fountain on for 7sec
@@ -94,20 +94,20 @@ def Spell(spell):
         print("nox_pin OFF")
         pi.write(nox_pin,0)
         print("incendio_pin OFF")
-        pi.write(incendio_pin,0)	
+        pi.write(incendio_pin,0)
     elif (spell=="Nox"):
         print("switch_pin OFF")
         pi.write(switch_pin,0)
         print("nox_pin ON")
         pi.write(nox_pin,1)
         print("incendio_pin OFF")
-        pi.write(incendio_pin,0)	
+        pi.write(incendio_pin,0)
     print("CAST: %s" %spell)
     cv2.putText(frame, spell, (10,30), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 255), 2)
 
 def StopAguamenti():
     #turns off fountain
-	pi.write(incendio_pin,0)
+    pi.write(incendio_pin,0)
 
 def IsGesture(a,b,c,d,i):
     print("point: %s" % i)
@@ -126,7 +126,7 @@ def IsGesture(a,b,c,d,i):
         Spell("Lumos")
     elif "rightdown" in astr:
         Spell("Nox")
-	#Colovaria spell removed
+    #Colovaria spell removed
     #elif "leftdown" in astr:
     #    Spell("Colovaria")
     elif "leftup" in astr:
@@ -229,8 +229,8 @@ def TrackWand():
             except IndexError:
                 print("Index error - Tracking")  
             except:
-            	e = sys.exc_info()[0]
-            	print("Tracking Error: %s" % e)
+                e = sys.exc_info()[0]
+                print("Tracking Error: %s" % e)
             key = cv2.waitKey(20)
             if key in [27, ord('Q'), ord('q')]: # exit on ESC
                 cv2.destroyAllWindows()
