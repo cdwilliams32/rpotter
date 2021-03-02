@@ -92,7 +92,7 @@ def Spell(spell):
     ig = [[0] for x in range(15)] 
     #Invoke IoT (or any other) actions here
     cv2.putText(mask, spell, (5, 25),cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,0,0))
-        if (spell=="Aguamenti"):
+    if (spell=="Aguamenti"):
         print("aguamenti_pin ON")
         pi.write(aguamenti_pin,1)
         #keep on for 7sec
@@ -104,7 +104,7 @@ def Spell(spell):
         print("light_pin OFF")
         pi.write(light_pin,0)
     elif (spell=="Locomotor"):
-    print("move_pin ON")
+        print("move_pin ON")
         pi.write(move_pin,1)
         #keep on for 7sec
         threading.Timer(7, StopLocomotor).start()
@@ -153,13 +153,13 @@ def IsGesture(a,b,c,d,i):
     #these are for moving diagnally
     #Angle Down Left = ADL
     elif (((b-d)/(c-a))>0.9):
-    ig[i].append("ADL")
+        ig[i].append("ADL")
     #Angle Down Right = ADR
     elif (((b-d)/(a-c))>0.9):
-    ig[i].append("ADR")
+        ig[i].append("ADR")
     #Angle Up Right = AUR
     elif (((d-b)/(a-c))>0.9):
-    ig[i].append("AUR")
+        ig[i].append("AUR")
     # PART 5B 
     #check for gesture patterns in array
     astr = ''.join(map(str, ig[i]))
@@ -170,11 +170,11 @@ def IsGesture(a,b,c,d,i):
     elif "leftup" in astr:
         Spell("Ascendio") 
     elif "upADLright" in astr:
-    Spell("Locomotor")
+        Spell("Locomotor")
     elif "AURADR" in astr:
-    Spell("Aguamenti")
+        Spell("Aguamenti")
     elif "AURADRleft" in astr:
-    Spell("Incindio")
+        Spell("Incindio")
     print(astr)
     
 # PART 6
