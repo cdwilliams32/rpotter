@@ -92,7 +92,7 @@ def Spell(spell):
     ig = [[0] for x in range(15)] 
     #Invoke IoT (or any other) actions here
     cv2.putText(mask, spell, (5, 25),cv2.FONT_HERSHEY_SIMPLEX, 1.0, (255,0,0))
-    	if (spell=="Aguamenti"):
+        if (spell=="Aguamenti"):
         print("aguamenti_pin ON")
         pi.write(aguamenti_pin,1)
         #keep on for 7sec
@@ -104,7 +104,7 @@ def Spell(spell):
         print("light_pin OFF")
         pi.write(light_pin,0)
     elif (spell=="Locomotor"):
-	print("move_pin ON")
+    print("move_pin ON")
         pi.write(move_pin,1)
         #keep on for 7sec
         threading.Timer(7, StopLocomotor).start()
@@ -116,28 +116,28 @@ def Spell(spell):
     elif (spell=="Ascendio"):
         print("motor_pin ON")
         pi.write(motor_pin,1)
-	#keep on for 2ec
+    #keep on for 2ec
         threading.Timer(2, StopAscendio).start()
         print("CAST: %s" %spell)
     cv2.putText(frame, spell, (10,30), cv2.FONT_HERSHEY_SIMPLEX, 0.65, (0, 0, 255), 2)
 
 def StopAguamenti():
     #turns off fountain
-	pi.write(aguamenti_pin,0)
-	
+    pi.write(aguamenti_pin,0)
+
 def StopLocomotor():
     #turns off motion
-	pi.write(move_pin,0)
-	
+    pi.write(move_pin,0)
+
 def StopIncindio():
     #turns off candle
-	pi.write(candle_pin,0)
-	
+    pi.write(candle_pin,0)
+
 def StopAscendio():
     #turns off motor
-	pi.write(motor_pin,0)
-	
-# PART 5A	
+    pi.write(motor_pin,0)
+
+# PART 5A
 
 def IsGesture(a,b,c,d,i):
     print("point: %s" % i)
@@ -151,15 +151,15 @@ def IsGesture(a,b,c,d,i):
     elif ((d<(b-5))&(abs(a-c)<5)):
         ig[i].append("down")
     #these are for moving diagnally
-	#Angle Down Left = ADL
+    #Angle Down Left = ADL
     elif (((b-d)/(c-a))>0.9):
-	ig[i].append("ADL")
-	#Angle Down Right = ADR
+    ig[i].append("ADL")
+    #Angle Down Right = ADR
     elif (((b-d)/(a-c))>0.9):
-	ig[i].append("ADR")
-	#Angle Up Right = AUR
+    ig[i].append("ADR")
+    #Angle Up Right = AUR
     elif (((d-b)/(a-c))>0.9):
-	ig[i].append("AUR")
+    ig[i].append("AUR")
     # PART 5B 
     #check for gesture patterns in array
     astr = ''.join(map(str, ig[i]))
@@ -170,11 +170,11 @@ def IsGesture(a,b,c,d,i):
     elif "leftup" in astr:
         Spell("Ascendio") 
     elif "upADLright" in astr:
-	Spell("Locomotor")
+    Spell("Locomotor")
     elif "AURADR" in astr:
-	Spell("Aguamenti")
+    Spell("Aguamenti")
     elif "AURADRleft" in astr:
-	Spell("Incindio")
+    Spell("Incindio")
     print(astr)
     
 # PART 6
@@ -275,8 +275,8 @@ def TrackWand():
             except IndexError:
                 print("Index error - Tracking")  
             except:
-            	e = sys.exc_info()[0]
-            	print("Tracking Error: %s" % e)
+                e = sys.exc_info()[0]
+                print("Tracking Error: %s" % e)
             key = cv2.waitKey(20)
             if key in [27, ord('Q'), ord('q')]: # exit on ESC
                 cv2.destroyAllWindows()
